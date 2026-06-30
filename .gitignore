@@ -1,0 +1,11 @@
+.DS_Store
+node_modules/
+.wrangler/
+.env
+.env.local
+.env.*.local
+*.log
+reports/
+scripts/generate-build-report.mjs
+scripts/publish-github-repos.mjs
+scripts/release-production.mjs

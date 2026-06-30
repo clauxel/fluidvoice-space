@@ -1,0 +1,28 @@
+name = "fluidvoice-space"
+main = "worker/index.js"
+compatibility_date = "2026-06-15"
+workers_dev = true
+routes = [
+  { pattern = "fluidvoice.space/*", zone_name = "fluidvoice.space" },
+  { pattern = "www.fluidvoice.space/*", zone_name = "fluidvoice.space" }
+]
+
+[vars]
+APP_ORIGIN = "https://fluidvoice.space"
+CANONICAL_HOST = "fluidvoice.space"
+PAYMENT_PROVIDER = "polar"
+SUPPORT_EMAIL = "support@aigeamy.com"
+
+[assets]
+directory = "./public"
+binding = "SITE_ASSETS"
+not_found_handling = "none"
+run_worker_first = [
+  "/*"
+]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "fluidvoice-space-analytics"
+database_id = "replace-with-fluidvoice-space-d1-database-id"
+migrations_dir = "migrations"

@@ -1,0 +1,15 @@
+{
+  "name": "fluidvoice.space",
+  "short_name": "FluidVoice Planner",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4f7f8",
+  "theme_color": "#0f9f8c",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "64x64",
+      "type": "image/svg+xml"
+    }
+  ]
+}

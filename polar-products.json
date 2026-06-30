@@ -1,0 +1,10 @@
+{
+  "provider": "polar",
+  "site": "fluidvoice-space",
+  "domain": "fluidvoice.space",
+  "origin": "https://fluidvoice.space",
+  "createdAt": "2026-07-01",
+  "status": "not_configured",
+  "note": "No FluidVoice Space Polar checkout links have been created or configured yet. Run scripts/create-polar-products.mjs with POLAR_ACCESS_TOKEN, then scripts/configure-worker-secrets.mjs after Wrangler authentication.",
+  "products": []
+}

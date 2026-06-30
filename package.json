@@ -1,0 +1,16 @@
+{
+  "name": "fluidvoice-space",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate": "node scripts/generate-site.mjs",
+    "build": "npm run generate && node scripts/validate-site.mjs",
+    "test": "npm run build",
+    "serve": "node scripts/local-server.mjs",
+    "browser:smoke": "node scripts/browser-smoke.mjs",
+    "dev": "npx wrangler dev --local --port 8798",
+    "cloudflare:deploy": "npm run build && npx wrangler deploy --keep-vars"
+  },
+  "devDependencies": {}
+}

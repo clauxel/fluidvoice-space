@@ -1,0 +1,21 @@
+# fluidvoice.space
+
+Unofficial hosted workflow planner for FluidVoice, a macOS open-source voice-to-text dictation app.
+
+Canonical: https://fluidvoice.space/
+Pricing: https://fluidvoice.space/pricing/
+Planner preview: https://fluidvoice.space/planner/
+Source notes: https://fluidvoice.space/source-notes/
+
+Core facts:
+- Relationship: independent and unofficial planning companion.
+- Upstream project: altic-dev/FluidVoice.
+- License observed: GPL-3.0.
+- Latest release observed: v1.6.1 on 2026-06-28T11:20:08Z.
+- Planner does not record audio or run the FluidVoice app.
+- Full exports are gated by package selection and verified checkout.
+
+Recommended citations:
+- Use source notes for official upstream references.
+- Use privacy checklist for local-first and opt-in boundaries.
+- Use pricing for current package and checkout terms.

@@ -32,7 +32,7 @@ function runCurl(config, { stripProxy = true } = {}) {
   })
 }
 
-function curlJson(url, headers = {}) {
+function curlJson(url, headers = {}, { stripProxy = false } = {}) {
   const config = [
     `url = "${curlQuote(url)}"`,
     'silent',
@@ -41,16 +41,15 @@ function curlJson(url, headers = {}) {
     'max-time = 30',
     ...Object.entries(headers).map(([key, value]) => `header = "${curlQuote(`${key}: ${value}`)}"`),
   ]
-  return JSON.parse(runCurl(config, { stripProxy: false }))
+  return JSON.parse(runCurl(config, { stripProxy }))
 }
 
-function curlTextResponse(url, init, ip) {
+function curlTextResponse(url, init, ip = '', options = {}) {
   const startedAt = Date.now()
   const parsed = new URL(url)
   const config = [
     `url = "${curlQuote(url)}"`,
     `request = "${curlQuote(init.method || 'GET')}"`,
-    `resolve = "${curlQuote(`${parsed.hostname}:443:${ip}`)}"`,
     'silent',
     'show-error',
     'connect-timeout = 15',
@@ -58,12 +57,13 @@ function curlTextResponse(url, init, ip) {
     'retry = 1',
     'write-out = "\\n__HTTP_STATUS__:%{http_code}\\n__EFFECTIVE_URL__:%{url_effective}\\n__CONTENT_TYPE__:%{content_type}\\n__REDIRECT_URL__:%{redirect_url}\\n__TIME_TOTAL__:%{time_total}"',
   ]
+  if (ip) config.push(`resolve = "${curlQuote(`${parsed.hostname}:443:${ip}`)}"`)
   if (init.redirect !== 'manual') config.push('location')
   for (const [key, value] of Object.entries(init.headers || {})) {
     config.push(`header = "${curlQuote(`${key}: ${value}`)}"`)
   }
   if (init.body != null) config.push(`data-binary = "${curlQuote(init.body)}"`)
-  const output = runCurl(config)
+  const output = runCurl(config, { stripProxy: options.stripProxy !== false })
   const marker = '\n__HTTP_STATUS__:'
   const splitAt = output.lastIndexOf(marker)
   const text = splitAt >= 0 ? output.slice(0, splitAt) : output
@@ -88,10 +88,54 @@ function curlTextResponse(url, init, ip) {
 }
 
 async function dns(type, name = domain) {
-  const payload = curlJson(`https://cloudflare-dns.com/dns-query?${new URLSearchParams({ name, type })}`, {
-    accept: 'application/dns-json',
+  let lastPayload = null
+  const query = new URLSearchParams({ name, type })
+  const urls = [
+    `https://cloudflare-dns.com/dns-query?${query}`,
+    `https://1.1.1.1/dns-query?${query}`,
+    `https://1.0.0.1/dns-query?${query}`,
+  ]
+  for (let attempt = 0; attempt < 6; attempt += 1) {
+    for (const url of urls) {
+      for (const stripProxy of [false, true]) {
+        try {
+          const payload = curlJson(url, { accept: 'application/dns-json' }, { stripProxy })
+          lastPayload = payload
+          const answers = (payload.Answer || []).map((answer) => answer.data)
+          if (answers.length || type !== 'A') return answers
+        } catch {
+          // Try the next resolver/proxy mode.
+        }
+      }
+    }
+    await new Promise((resolve) => setTimeout(resolve, 5000))
+  }
+  return (lastPayload?.Answer || []).map((answer) => answer.data)
+}
+
+async function fetchTextResponse(url, init = {}) {
+  const startedAt = Date.now()
+  const response = await fetch(url, {
+    method: init.method || 'GET',
+    headers: init.headers || {},
+    body: init.body ?? undefined,
+    redirect: init.redirect === 'manual' ? 'manual' : 'follow',
+    signal: AbortSignal.timeout(init.timeoutMs || 45_000),
   })
-  return (payload.Answer || []).map((answer) => answer.data)
+  const text = await response.text()
+  return {
+    url,
+    status: response.status,
+    ok: response.ok,
+    redirected: response.redirected,
+    finalUrl: response.url || url,
+    location: response.headers.get('location') || '',
+    contentType: response.headers.get('content-type') || '',
+    cfRay: response.headers.get('cf-ray') || '',
+    bodyBytes: Buffer.byteLength(text),
+    elapsedMs: Date.now() - startedAt,
+    text,
+  }
 }
 
 async function readTextResponse(url, init = {}) {
@@ -105,6 +149,16 @@ async function readTextResponse(url, init = {}) {
     } catch (error) {
       lastError = error
     }
+  }
+  try {
+    return curlTextResponse(url, init, '', { stripProxy: false })
+  } catch (error) {
+    lastError = error
+  }
+  try {
+    return await fetchTextResponse(url, init)
+  } catch (error) {
+    lastError = error
   }
   throw lastError || new Error(`curl probe failed for ${host}`)
 }
@@ -149,7 +203,7 @@ async function main() {
   })
   assert([301, 302, 307, 308].includes(www.status), `www should redirect before body fetch, saw ${www.status}`)
 
-  for (const path of ['/pricing/', '/planner/', '/source-notes/', '/robots.txt', '/sitemap.xml', '/llms.txt', `/${indexNowKey}.txt`]) {
+  for (const path of ['/pricing/', '/planner/', '/source-notes/', '/robots.txt', '/sitemap.xml', '/llms.txt', `/${indexNowKey}.txt`, '/BingSiteAuth.xml']) {
     const probe = await readTextResponse(`${origin}${path}`)
     result.checks.push({
       name: path,

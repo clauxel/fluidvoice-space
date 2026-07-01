@@ -32,6 +32,7 @@ const required = [
   'robots.txt',
   'llms.txt',
   '590a3ab02487cffe4cfd55b0df769f65.txt',
+  'BingSiteAuth.xml',
   'favicon.svg',
   'site.webmanifest',
   'assets/fluidvoice-workflow-hero.png',
@@ -130,6 +131,11 @@ for (const needle of [
 const sourceNotes = await readFile(new URL('source-notes/index.html', root), 'utf8')
 if (!sourceNotes.includes('Official Sources') || !sourceNotes.includes('rel="noopener noreferrer nofollow"')) {
   throw new Error('Source notes should isolate official links')
+}
+
+const bingAuth = await readFile(new URL('BingSiteAuth.xml', root), 'utf8')
+if (!bingAuth.includes('94D388E2CA0B71EC5A04D17A6A46E444')) {
+  throw new Error('BingSiteAuth.xml missing expected Bing Webmaster verification code')
 }
 
 const sitemap = await readFile(new URL('sitemap.xml', root), 'utf8')

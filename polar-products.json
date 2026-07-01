@@ -3,8 +3,67 @@
   "site": "fluidvoice-space",
   "domain": "fluidvoice.space",
   "origin": "https://fluidvoice.space",
-  "createdAt": "2026-07-01",
-  "status": "not_configured",
-  "note": "No FluidVoice Space Polar checkout links have been created or configured yet. Run scripts/create-polar-products.mjs with POLAR_ACCESS_TOKEN, then scripts/configure-worker-secrets.mjs after Wrangler authentication.",
-  "products": []
+  "createdAt": "2026-06-30",
+  "products": [
+    {
+      "plan": "starter",
+      "billing": "monthly",
+      "productName": "FluidVoice Space Starter Monthly",
+      "productId": "6118a1db-0f0d-43fc-9744-bba0028227eb",
+      "priceId": "26fcafef-665f-4da2-9c99-1b700c47164b",
+      "amountUsd": "9.00",
+      "checkoutLinkId": "95675c6d-a97b-498e-afa9-d6810c718f49",
+      "checkoutUrl": "https://buy.polar.sh/polar_cl_SIbuSW3MUVdMsvOeo1DV3qdOwP3g8IEMg9B542LSpAV"
+    },
+    {
+      "plan": "starter",
+      "billing": "annual",
+      "productName": "FluidVoice Space Starter Annual",
+      "productId": "0a11ea7d-7463-4324-b62e-9bb7a3373676",
+      "priceId": "1eb25e6a-7a4f-4d26-bab7-df29313aba23",
+      "amountUsd": "54.00",
+      "checkoutLinkId": "ffcf524d-bedd-4d5b-a867-87e8e811b11a",
+      "checkoutUrl": "https://buy.polar.sh/polar_cl_eRTeAvavxm0vSm6hZ3w4HORwirjzNliGGKScr1zXDqH"
+    },
+    {
+      "plan": "pro",
+      "billing": "monthly",
+      "productName": "FluidVoice Space Pro Monthly",
+      "productId": "7490a4ea-ab47-455c-97e0-b84dcd8ecd88",
+      "priceId": "745367d2-dff2-4b5c-820c-cd2fa50a73ab",
+      "amountUsd": "29.00",
+      "checkoutLinkId": "a636bdcc-5c0c-426f-ad53-59897910ed3f",
+      "checkoutUrl": "https://buy.polar.sh/polar_cl_Lu1DP2ANPbyjMdUjthKqVO8kNLfKNABMe8GpM3MmdoD"
+    },
+    {
+      "plan": "pro",
+      "billing": "annual",
+      "productName": "FluidVoice Space Pro Annual",
+      "productId": "c5183173-711c-4e2c-b06c-a50a330d8768",
+      "priceId": "3b1363b5-622f-4109-855b-b7e313b350d2",
+      "amountUsd": "174.00",
+      "checkoutLinkId": "423f7a8d-286a-43c8-b0b8-dd2b6a43656f",
+      "checkoutUrl": "https://buy.polar.sh/polar_cl_f3WglOhwJkyiGm2F83AZx9PUwIHZVe8Qp4oHv4WClvb"
+    },
+    {
+      "plan": "enterprise",
+      "billing": "monthly",
+      "productName": "FluidVoice Space Enterprise Monthly",
+      "productId": "a9934d51-be14-4e8a-81e2-4c89df4f1b7f",
+      "priceId": "74283652-114b-4762-97d7-e8bb4662cece",
+      "amountUsd": "59.00",
+      "checkoutLinkId": "e2799520-d170-4c56-9186-7be0dcc9e0f3",
+      "checkoutUrl": "https://buy.polar.sh/polar_cl_kYp0PMTI7Vy0cL9cJSqFWpmkBTexh15X9tCM61sr2CF"
+    },
+    {
+      "plan": "enterprise",
+      "billing": "annual",
+      "productName": "FluidVoice Space Enterprise Annual",
+      "productId": "e5065339-1739-4bcf-aa55-39dc7099ec6d",
+      "priceId": "226c3ba2-4a0a-4b4b-8161-3c092edd7b50",
+      "amountUsd": "354.00",
+      "checkoutLinkId": "d27798b9-7bad-4cfb-98c1-8f4b18160f4c",
+      "checkoutUrl": "https://buy.polar.sh/polar_cl_DIJlh23tGwfch3bL2iIaEUHBayDU7OPmtglPK3P6MLz"
+    }
+  ]
 }

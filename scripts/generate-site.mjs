@@ -5,6 +5,7 @@ const origin = 'https://fluidvoice.space'
 const supportEmail = 'support@aigeamy.com'
 const generatedAt = '2026-07-01T10:30:00+08:00'
 const indexNowKey = '590a3ab02487cffe4cfd55b0df769f65'
+const bingSiteAuthXml = '<?xml version="1.0"?><users><user>94D388E2CA0B71EC5A04D17A6A46E444</user></users>\n'
 const heroFile = 'assets/fluidvoice-workflow-hero.png'
 
 const repoFacts = {
@@ -1149,6 +1150,7 @@ async function main() {
   await writeFile(new URL('robots.txt', publicRoot), robotsTxt(), 'utf8')
   await writeFile(new URL('llms.txt', publicRoot), llmsTxt(), 'utf8')
   await writeFile(new URL(indexNowKey + '.txt', publicRoot), indexNowKey + '\n', 'utf8')
+  await writeFile(new URL('BingSiteAuth.xml', publicRoot), bingSiteAuthXml, 'utf8')
   await writeFile(new URL('favicon.svg', publicRoot), faviconSvg(), 'utf8')
   await writeFile(new URL('site.webmanifest', publicRoot), manifestJson(), 'utf8')
 }

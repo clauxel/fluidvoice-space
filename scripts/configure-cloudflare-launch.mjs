@@ -1,3 +1,5 @@
+import { execFileSync } from 'node:child_process'
+
 const domain = 'fluidvoice.space'
 const canonicalHost = domain
 const wwwHost = `www.${domain}`
@@ -5,11 +7,22 @@ const workerName = 'fluidvoice-space'
 const accountId = process.env.CLOUDFLARE_ACCOUNT_ID || '615b05ce6668dd8e0e2431077fc29c82'
 const statusOnly = process.argv.includes('--status-only')
 
-const cfToken = process.env.CLOUDFLARE_API_TOKEN
-const cfGlobalKey = process.env.CLOUDFLARE_API_KEY
-const cfEmail = process.env.CLOUDFLARE_EMAIL || process.env.CLOUDFLARE_API_EMAIL
-const spaceshipKey = process.env.SPACESHIP_API_KEY?.trim()
-const spaceshipSecret = process.env.SPACESHIP_API_SECRET?.trim()
+function keychain(service, account = 'codex-env') {
+  try {
+    return execFileSync('/usr/bin/security', ['find-generic-password', '-s', service, '-a', account, '-w'], {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+    }).trim()
+  } catch {
+    return ''
+  }
+}
+
+const cfToken = process.env.CLOUDFLARE_API_TOKEN || keychain('CLOUDFLARE_API_TOKEN')
+const cfGlobalKey = process.env.CLOUDFLARE_API_KEY || keychain('CLOUDFLARE_API_KEY')
+const cfEmail = process.env.CLOUDFLARE_EMAIL || process.env.CLOUDFLARE_API_EMAIL || keychain('CLOUDFLARE_EMAIL')
+const spaceshipKey = (process.env.SPACESHIP_API_KEY || keychain('SPACESHIP_API_KEY')).trim()
+const spaceshipSecret = (process.env.SPACESHIP_API_SECRET || keychain('SPACESHIP_API_SECRET')).trim()
 
 function requireValue(value, label) {
   if (!value) throw new Error(`${label} is not configured`)

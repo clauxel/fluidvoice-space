@@ -1,0 +1,90 @@
+{
+  "generatedAt": "2026-06-30T23:59:02.608Z",
+  "domain": "fluidvoice.space",
+  "siteUrl": "https://fluidvoice.space/",
+  "sitemapUrl": "https://fluidvoice.space/sitemap.xml",
+  "sitemap": {
+    "status": "live",
+    "urlCount": 19,
+    "submittedUrls": [
+      "https://fluidvoice.space/",
+      "https://fluidvoice.space/planner/",
+      "https://fluidvoice.space/model-selection/",
+      "https://fluidvoice.space/command-mode/",
+      "https://fluidvoice.space/write-mode/",
+      "https://fluidvoice.space/privacy-checklist/",
+      "https://fluidvoice.space/macos-permissions/",
+      "https://fluidvoice.space/fluid-intelligence/",
+      "https://fluidvoice.space/whisper-alternative/",
+      "https://fluidvoice.space/docs/",
+      "https://fluidvoice.space/pricing/",
+      "https://fluidvoice.space/checkout/",
+      "https://fluidvoice.space/success/",
+      "https://fluidvoice.space/cancel/",
+      "https://fluidvoice.space/source-notes/",
+      "https://fluidvoice.space/faq/",
+      "https://fluidvoice.space/privacy/",
+      "https://fluidvoice.space/terms/",
+      "https://fluidvoice.space/changelog/"
+    ]
+  },
+  "gsc": {
+    "property": "sc-domain:fluidvoice.space",
+    "urlPrefixProperty": "https://fluidvoice.space/",
+    "sitemapUrl": "https://fluidvoice.space/sitemap.xml",
+    "verification": null,
+    "domainSitemapStatus": "ok:204",
+    "urlPrefixSitemapStatus": "ok:204",
+    "matchingPropertiesAfter": [
+      {
+        "siteUrl": "https://fluidvoice.space/",
+        "permissionLevel": "siteOwner"
+      },
+      {
+        "siteUrl": "sc-domain:fluidvoice.space",
+        "permissionLevel": "siteOwner"
+      }
+    ],
+    "status": "submitted"
+  },
+  "bing": {
+    "status": "submitted",
+    "siteUrl": "https://fluidvoice.space/",
+    "sitemapUrl": "https://fluidvoice.space/sitemap.xml",
+    "matchingSiteBefore": {
+      "url": "https://fluidvoice.space/",
+      "isVerified": false
+    },
+    "addSite": {
+      "status": "submitted",
+      "httpStatus": 200,
+      "error": ""
+    },
+    "verifySite": {
+      "status": "submitted",
+      "httpStatus": 200,
+      "error": ""
+    },
+    "submitFeed": {
+      "status": "failed",
+      "httpStatus": 400,
+      "error": "ERROR!!! NotAuthorized"
+    },
+    "submitUrlBatch": {
+      "status": "failed",
+      "httpStatus": 400,
+      "error": "ERROR!!! NotAuthorized"
+    },
+    "matchingSiteAfter": {
+      "url": "https://fluidvoice.space/",
+      "isVerified": false
+    }
+  },
+  "indexNow": {
+    "status": "submitted",
+    "httpStatus": 200,
+    "keyLocation": "https://fluidvoice.space/590a3ab02487cffe4cfd55b0df769f65.txt",
+    "urlCount": 19,
+    "error": ""
+  }
+}

@@ -105,7 +105,10 @@ async function ensureDnsRecord(zoneId, host) {
   const name = host === canonicalHost ? domain : host
   const records = await cf(`/zones/${zoneId}/dns_records?name=${encodeURIComponent(name)}&per_page=100`)
   const compatible = records.result?.filter((record) => record.type === 'A' && record.content === '192.0.2.1') || []
-  const conflicts = records.result?.filter((record) => !(record.type === 'A' && record.content === '192.0.2.1')) || []
+  const conflicts = records.result?.filter((record) => (
+    ['A', 'AAAA', 'CNAME'].includes(record.type) &&
+    !(record.type === 'A' && record.content === '192.0.2.1')
+  )) || []
   if (conflicts.length) {
     throw new Error(`DNS conflict for ${name}: ${conflicts.map((record) => record.type).join(', ')} record already exists. No records were deleted.`)
   }

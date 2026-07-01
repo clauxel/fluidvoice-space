@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-30T23:59:02.608Z",
+  "generatedAt": "2026-07-01T00:04:16.539Z",
   "domain": "fluidvoice.space",
   "siteUrl": "https://fluidvoice.space/",
   "sitemapUrl": "https://fluidvoice.space/sitemap.xml",
@@ -66,18 +66,18 @@
       "error": ""
     },
     "submitFeed": {
-      "status": "failed",
-      "httpStatus": 400,
-      "error": "ERROR!!! NotAuthorized"
+      "status": "submitted",
+      "httpStatus": 200,
+      "error": ""
     },
     "submitUrlBatch": {
-      "status": "failed",
-      "httpStatus": 400,
-      "error": "ERROR!!! NotAuthorized"
+      "status": "submitted",
+      "httpStatus": 200,
+      "error": ""
     },
     "matchingSiteAfter": {
       "url": "https://fluidvoice.space/",
-      "isVerified": false
+      "isVerified": true
     }
   },
   "indexNow": {

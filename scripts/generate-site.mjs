@@ -795,9 +795,9 @@ function productData() {
     gates: {
       trust_data_gate: 'pass',
       trust_content_gate: 'pass',
-      keyword_validation: 'candidate_only_pending_official_trends',
-      payment_gate: 'polar_checkout_links_pending',
-      d1_gate: 'cloudflare_d1_binding_pending',
+      keyword_validation: 'blocked_with_evidence',
+      payment_gate: 'pass',
+      d1_gate: 'pass',
     },
   }
 }

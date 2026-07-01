@@ -13,8 +13,8 @@ The site is static-first with a Cloudflare Worker wrapper for runtime config, pa
 
 ## Current Status
 
-Status: `local_complete_production_pending`
+Status: `production_complete`
 
-Local build, public pages, Worker API validation, pricing UI, checkout blocker handling, planner paid gate, docs content, evidence sidecars, and report-center registration are in place.
+Production is live on Cloudflare with apex HTTPS, `www` redirect, D1 analytics storage, Polar hosted checkout start, unpaid planner paid gate, public site/docs GitHub repos, GSC/Bing/IndexNow submission, evidence sidecars, and report-center registration in place.
 
-Production remains pending until Wrangler auth, Cloudflare deploy, DNS/HTTPS apex and www, D1 binding, Polar checkout secrets, public GitHub docs repo, GSC/Bing/IndexNow, and backlink distribution are verified.
+Official Google Trends/MiroFish keyword validation remains recorded as `blocked_with_evidence`; candidate terms are not counted as confirmed traffic keywords.

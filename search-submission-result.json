@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-01T00:15:55.896Z",
+  "generatedAt": "2026-07-01T00:23:00.640Z",
   "domain": "fluidvoice.space",
   "siteUrl": "https://fluidvoice.space/",
   "sitemapUrl": "https://fluidvoice.space/sitemap.xml",
@@ -37,11 +37,11 @@
     "urlPrefixSitemapStatus": "ok:204",
     "matchingPropertiesAfter": [
       {
-        "siteUrl": "sc-domain:fluidvoice.space",
+        "siteUrl": "https://fluidvoice.space/",
         "permissionLevel": "siteOwner"
       },
       {
-        "siteUrl": "https://fluidvoice.space/",
+        "siteUrl": "sc-domain:fluidvoice.space",
         "permissionLevel": "siteOwner"
       }
     ],
